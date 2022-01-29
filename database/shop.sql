@@ -73,8 +73,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `contact`, `city`, `address`) VALUES
-(4, 'yugesh verma', 'yugeshverma32@gmail.com', '14e1b600b1fd579f47433b88e8d85291', '6263056779', 'bhilai', '25 commercial complex, nehru nagar,east near vijya bank, bhilai C.G.'),
-(5, 'yugesh', 'yugeshverma@gmail.com', '14e1b600b1fd579f47433b88e8d85291', '9165063741', 'bhilai', 'bhilai');
+(1, 'Vinitha K', 'vinithakumarasamy@gmail.com', '14e1b600b1fd579f47433b88e8d85291', '1234567890', 'palladam', 'cbe'),
+(2, 'Jackkin', 'jacklin@gmail.com', '14e1b600b1fd579f47433b88e8d85291', '3216549878', 'palldam', 'cbe');
 
 -- --------------------------------------------------------
 
