@@ -3,6 +3,14 @@
     border-radius: 0;
 }
 
+.navbar .navbar-collapse .navbar-nav .nav-item .nav-link{
+    width: max-content;
+}
+
+.offcanvas .offcanvas-body .nav-pills .nav-item{width: 100%;}
+.offcanvas .offcanvas-body .nav-pills .nav-item:hover{background: #f2f2f2;}
+
+
 #bannerImage{
     padding-top:75px;
     padding-bottom:50px;
@@ -33,6 +41,7 @@
     float: left;
     display: flex;
     justify-content: center;
+    margin: 15px 0;
 }
 
 .bloom .bloom-content{
@@ -99,12 +108,29 @@ html {
 
 /* Signup page CSS */
 .signup-page{margin-top: 20px;}
+.signup-page .signup-sec {display: flex;align-items: center;justify-content: center;}
+.signup-page .signup-sec .signup-form-sec{width: 50%;}
+.signup-page .signup-sec .signup-form-sec form{display: grid;gap: 8px;}
 
 /* Login page CSS */
 .login-page{margin-top: 20px;}
+.login-page .login-sec {display: flex;align-items: center;justify-content: center;}
+.login-page .login-sec .login-sec-form{width: 50%;}
+.login-page .login-sec .login-sec-form form{display: grid;gap: 8px;}
+
 
 /* Shopping page CSS */
 .shoping-page{margin-top: 20px;}
+.shoping-page .shop-sec{height:1105px;overflow-y: scroll;}
+.shoping-page .shop-sec .row .thumbnail img{width: 90%;height: 90%;}
+
+.cart-page {margin-top: 20px;}
+
+.settings-page {margin-top: 20px;}
+.settings-page .settings-sec{display: flex;align-items: center;justify-content: center;}
+.settings-page .settings-sec .settings-sec-form{width: 50%;}
+.settings-page .settings-sec .settings-sec-form form{display: grid;gap: 8px;}
+
 
 @media (min-width:320px){
     #autoResize{

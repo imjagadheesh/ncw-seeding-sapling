@@ -8,8 +8,8 @@
 
 
 <div class="container login-page">
-    <div class="row">
-        <div class="col-xs-6 col-xs-offset-3">
+    <div class="login-sec">
+        <div class="login-sec-form">
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     <h3>LOGIN</h3>
@@ -28,7 +28,7 @@
                         </div>
                     </form>
                 </div>
-                <div class="panel-footer">Don't have an account yet? <a href="signup.php">Register</a></div>
+                <div class="panel-footer pt-3">Don't have an account yet? <a href="signup.php">Register</a></div>
             </div>
         </div>
     </div>

@@ -8,8 +8,8 @@
 ?>
 
 <div class="container signup-page">
-    <div class="row">
-        <div class="col-xs-4 col-xs-offset-4">
+    <div class="signup-sec">
+        <div class="signup-form-sec">
             <h1><b>SIGN UP</b></h1>
             <form method="post" action="user_registration_script.php" autocomplete="off">
                 <div class="form-group">

@@ -14,44 +14,81 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- latest compiled and minified CSS -->
-    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" type="text/css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    <link rel="stylesheet" href="css/style.css">
+    
     <!-- jquery library -->
-    <script type="text/javascript" src="bootstrap/js/jquery-3.2.1.min.js"></script>
-    <!-- Latest compiled and minified javascript -->
-    <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
-    <!-- External CSS -->
-    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js" integrity="sha512-Pa4Jto+LuCGBHy2/POQEbTh0reuoiEXQWXGn8S7aRlhcwpVkO8+4uoZVSOqUjdCsE+77oygfu2Tl+7qGHGIWsw==" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
 </head>
 
 <body>
-    <nav class="navbar navbar-inverse navabar-fixed-top">
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
         <div class="container-fluid">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a href="index.php" class="navbar-brand">SEEDING AND SLAPING</a>
-            </div>
+            <a href="index.php" class="navbar-brand">SEEDING AND SLAPING</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto">
+            <?php if (isset($_SESSION['email'])) { ?>
+                <li class="nav-item">
+                    <a class="nav-link" href="products.php"><span class="fa fa-shopping-bag"></span> Shop</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="cart.php"><span class="fa fa-shopping-cart"></span> Cart</a>
+                </li>
+                <li class="nav-item" role="button">
+                    <a class="nav-link" data-bs-toggle="offcanvas" data-bs-target="#offcanvas"><span class="fa fa-cog fa-lg" ></span> Settings</a>
+                </li>
+            <?php } else { ?>
+                <li class="nav-item">
+                    <a class="nav-link" href="signup.php"><span class="fa fa-user-plus"></span> Sign Up</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="login.php"><span class="fa fa-sign-in"></span> Sign In</a>
+                </li>
+            <?php } ?>
 
-            <div class="collapse navbar-collapse" id="myNavbar">
-                <ul class="nav navbar-nav navbar-right">
-                    <?php if (isset($_SESSION['email'])) { ?>
-                        <li><a href="products.php"><span class="glyphicon glyphicon-briefcase"></span> Shop</a></li>
-                        <li><a href="cart.php"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
-                        <li><a href="settings.php"><span class="glyphicon glyphicon-cog"></span> Settings</a></li>
-                        <li><a href="logout.php"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
-                    <?php
-                    } else {
-                    ?>
-                        <li><a href="signup.php"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                        <li><a href="login.php"><span class="glyphicon glyphicon-log-in"></span> Sign In</a></li>
-                    <?php
-                    }
-                    ?>
-
-                </ul>
-            </div>
+            </ul>
         </div>
     </nav>
+
+    <div class="offcanvas offcanvas-start w-25" tabindex="-1" id="offcanvas" data-bs-keyboard="false" data-bs-backdrop="false">
+    <div class="offcanvas-header">
+        <h6 class="offcanvas-title d-none d-sm-block" id="offcanvas">Menu</h6>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body px-0">
+        <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-start" id="menu">
+            <li class="nav-item">
+                <a href="#" class="nav-link text-truncate">
+                    <i class="fs-5 bi-house"></i><span class="ms-1 d-none d-sm-inline">My Account</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="settings.php" class="nav-link text-truncate">
+                    <i class="fs-5 bi-house"></i><span class="ms-1 d-none d-sm-inline">Change Password</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link text-truncate">
+                    <i class="fs-5 bi-house"></i><span class="ms-1 d-none d-sm-inline">Orders</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link text-truncate">
+                    <i class="fs-5 bi-house"></i><span class="ms-1 d-none d-sm-inline">My Products</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link text-truncate">
+                    <i class="fs-5 bi-house"></i><span class="ms-1 d-none d-sm-inline">Sell My Products</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>

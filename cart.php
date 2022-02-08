@@ -23,7 +23,7 @@
     }
 ?>
 
-<div class="container">
+<div class="container cart-page">
     <table class="table table-bordered table-striped">
         <tbody>
             <tr>

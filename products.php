@@ -10,8 +10,8 @@
             <p class="text-center">Sell or Buy your plants</p>
         </div>
     </div>
-    <div class="container">
-        <div class="row">
+    <div class="container shop-sec">
+        <div class="row py-3">
             <div class="col-md-3 col-sm-6">
                 <div class="thumbnail">
                     <a href="cart.php">
@@ -122,7 +122,8 @@
                 </div>
             </div>
         </div>
-        <div class="row">
+        
+        <div class="row py-3">
             <div class="col-md-3 col-sm-6">
                 <div class="thumbnail">
                     <a href="cart.php">
@@ -232,7 +233,8 @@
                 </div>
             </div>
         </div>
-        <div class="row">
+        
+        <div class="row py-3">
             <div class="col-md-3 col-sm-6">
                 <div class="thumbnail">
                     <a href="cart.php">
@@ -344,4 +346,5 @@
         </div>
     </div>
 </div>
+<div class="content-gap"></div>
 <?php require 'footer.php'; ?>

@@ -15,7 +15,7 @@
 </div>
 <div class="container product-sec">
     <div class="row">
-        <div class="col-xs-4">
+        <div class="col-4">
             <div class="seeding-thumbnail">
                 <a href="products.php">
                     <img src="img/seeding-slaping-1.jpeg" alt="Flower 1">
@@ -28,7 +28,7 @@
                 </center> -->
             </div>
         </div>
-        <div class="col-xs-4">
+        <div class="col-4">
             <div class="seeding-thumbnail">
                 <a href="products.php">
                     <img src="img/seeding-slaping-2.jpeg" alt="Flower 2">
@@ -41,7 +41,7 @@
                 </center> -->
             </div>
         </div>
-        <div class="col-xs-4">
+        <div class="col-4">
             <div class="seeding-thumbnail">
                 <a href="products.php">
                     <img src="img/seeding-slaping-3.jpeg" alt="Flower 3">
