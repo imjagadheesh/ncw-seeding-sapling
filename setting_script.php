@@ -12,20 +12,16 @@
     $password_from_database_result=mysqli_query($con,$password_from_database_query) or die(mysqli_error($con));
     $row=mysqli_fetch_array($password_from_database_result);
     //echo $row['password'];
+    
     if($row['password']==$old_password){
         $update_password_query="update users set password='$new_password' where email='$email'";
         $update_password_result=mysqli_query($con,$update_password_query) or die(mysqli_error($con));
-        echo "Your password has been updated.";
-        ?>
-        <meta http-equiv="refresh" content="3;url=products.php" />
-        <?php
-    }else{
-        ?>
-        <script>
-            window.alert("Wrong password!!");
-        </script>
-        <meta http-equiv="refresh" content="1;url=settings.php" />
-        <?php
-        //header('location:settings.php');
+        $alert_msg = ['msg' => 'Your password has been updated', 'alert-type' => 'alert-success'];
+    } else {
+        $alert_msg = ['msg' => 'Your password not updated, Try again', 'alert-type' => 'alert-danger'];
+        header('location:settings.php');
     }
+    
+    $_SESSION['alert'] = $alert_msg;
+    header('location:settings.php');
 ?>

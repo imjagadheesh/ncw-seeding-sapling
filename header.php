@@ -57,6 +57,17 @@ session_start();
         </div>
     </nav>
 
+    <?php if (isset($_SESSION['alert']) && isset($_SESSION['alert']['msg'])) { 
+        $msg = $_SESSION['alert']['msg'];
+        $type = isset($_SESSION['alert']['alert-type']) ? $_SESSION['alert']['alert-type'] : 'alert-success';
+        unset($_SESSION['alert']);
+    ?>
+        <div class="custom-alert alert <?= $type;?> mt-3">
+            <span class="closebtn fa fa-times" onclick="this.parentElement.style.display='none';"></span>
+            <span class="alert-content"><?= $msg; ?></span>
+        </div>
+    <?php } ?>
+
     <div class="offcanvas offcanvas-start w-25" tabindex="-1" id="offcanvas" data-bs-keyboard="false" data-bs-backdrop="false">
     <div class="offcanvas-header">
         <h6 class="offcanvas-title d-none d-sm-block" id="offcanvas">Menu</h6>
@@ -65,7 +76,7 @@ session_start();
     <div class="offcanvas-body px-0">
         <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-start" id="menu">
             <li class="nav-item">
-                <a href="#" class="nav-link text-truncate">
+                <a href="account.php" class="nav-link text-truncate">
                     <i class="fs-5 bi-house"></i><span class="ms-1 d-none d-sm-inline">My Account</span>
                 </a>
             </li>
@@ -75,7 +86,7 @@ session_start();
                 </a>
             </li>
             <li class="nav-item">
-                <a href="#" class="nav-link text-truncate">
+                <a href="cart.php" class="nav-link text-truncate">
                     <i class="fs-5 bi-house"></i><span class="ms-1 d-none d-sm-inline">Orders</span>
                 </a>
             </li>
