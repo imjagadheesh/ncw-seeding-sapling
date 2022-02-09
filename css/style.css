@@ -9,7 +9,6 @@
 
 .custom-alert{width: auto;position: absolute;right: 5px;text-align: left;font-size: 20px;}
 .custom-alert .closebtn{float: right;font-size: 25px;text-align: right;padding-left: 10px;cursor: pointer;color: red;}
-.custom-alert .alert-content{}
 
 .offcanvas .offcanvas-body .nav-pills .nav-item{width: 100%;}
 .offcanvas .offcanvas-body .nav-pills .nav-item:hover{background: #f2f2f2;}
