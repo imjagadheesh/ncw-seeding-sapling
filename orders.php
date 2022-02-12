@@ -7,7 +7,7 @@
     }
 
     $user_id=$_SESSION['id'];
-    $user_products_query="select it.id,it.name,it.price from users_items ut inner join items it on it.id=ut.item_id where ut.user_id='$user_id' AND ut.status=1";
+    $user_products_query="select it.id,it.name,it.price from users_items ut inner join items it on it.id=ut.item_id where ut.user_id='$user_id' AND ut.status=2";
     $user_products_result = mysqli_query($con,$user_products_query) or die(mysqli_error($con));
     $no_of_user_products= mysqli_num_rows($user_products_result);
     $sum = 0;
@@ -21,7 +21,7 @@
 
 <?php if($no_of_user_products == 0) { ?>
 <div class="alert alert-info text-center mt-3">
-    <strong>Info!</strong> No items in the cart! <br>   
+    <strong>Info!</strong> No oders found! <br>   
     <a href="products.php"><span class="fa fa-shopping-bag"></span> Shop now</a>
 </div>
 <?php } else { ?>
@@ -40,12 +40,9 @@
                 ?>
             <tr>
                 <th><?php echo $counter ?></th><th><?php echo $row['name']?></th><th><?php echo $row['price']?></th>
-                <th><a href='cart_remove.php?id=<?php echo $row['id'] ?>&status=1'>Remove</a></th>
+                <th><a href='cart_remove.php?id=<?php echo $row['id'] ?>&status=2'>Cancel</a></th>
             </tr>
             <?php $counter=$counter+1;}?>
-            <tr>
-                <th></th><th>Total</th><th>Rs <?php echo $sum;?>/-</th><th><a href="success.php?id=<?php echo $user_id?>" class="btn btn-primary">Confirm Order</a></th>
-            </tr>
         </tbody>
     </table>
 </div>

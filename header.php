@@ -86,8 +86,13 @@ session_start();
                 </a>
             </li>
             <li class="nav-item">
-                <a href="cart.php" class="nav-link text-truncate">
+                <a href="orders.php" class="nav-link text-truncate">
                     <i class="fs-5 bi-house"></i><span class="ms-1 d-none d-sm-inline">Orders</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link text-truncate">
+                    <i class="fs-5 bi-house"></i><span class="ms-1 d-none d-sm-inline">Sell My Products</span>
                 </a>
             </li>
             <li class="nav-item">
@@ -96,8 +101,8 @@ session_start();
                 </a>
             </li>
             <li class="nav-item">
-                <a href="#" class="nav-link text-truncate">
-                    <i class="fs-5 bi-house"></i><span class="ms-1 d-none d-sm-inline">Sell My Products</span>
+                <a href="logout.php" class="nav-link text-truncate">
+                    <i class="fs-5 bi-house"></i><span class="ms-1 d-none d-sm-inline">Logout</span>
                 </a>
             </li>
         </ul>

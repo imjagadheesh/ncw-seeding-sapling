@@ -1,6 +1,20 @@
 <?php
     require 'header.php';
-    require 'check_if_added.php';
+    require 'connection.php';
+
+    $user_id = $_SESSION['id'];
+    $user_items_query = "select item_id from users_items where user_id = $user_id AND status = 1";
+    $user_item_result = mysqli_query($con, $user_items_query) or die(mysqli_error($con));
+    $user_item_result = mysqli_fetch_all($user_item_result, MYSQLI_ASSOC);
+    $user_added_cart = [];
+    foreach ($user_item_result as $item) {
+        $user_added_cart[] = $item['item_id'];
+    }
+
+    $produts_query = "select * from items";
+    $produts_prepare = mysqli_query($con, $produts_query) or die(mysqli_error($con));
+    $produts = mysqli_fetch_all($produts_prepare, MYSQLI_ASSOC);
+    $product_cal = ceil(count($produts)/4);
 ?>
 
 <div class="shoping-page">
@@ -11,7 +25,17 @@
         </div>
     </div>
     <div class="container shop-sec">
+        <?php if (empty($produts)) { ?>
+            <div class="alert alert-info text-center mt-3">
+                <strong>Info!</strong> No products! <br>   
+                <a href="products.php"><span class="fa fa-shopping-bag"></span> Shop now</a>
+            </div>
+        <?php } else { ?>
+
+        <?php for ($i=1; $i < $product_cal; $i++) { $list = $i * 4;?>
+
         <div class="row py-3">
+            <?php if (isset($produts[$list-4])) { ?>
             <div class="col-md-3 col-sm-6">
                 <div class="thumbnail">
                     <a href="cart.php">
@@ -19,27 +43,22 @@
                     </a>
                     <center>
                         <div class="caption">
-                            <h3>Cannon EOS</h3>
-                            <p>Price: Rs. 36000.00</p>
+                            <h3 class="capitalize"><?=$produts[$list-4]['name'];?></h3>
+                            <p>Price: Rs. <?=$produts[$list-4]['price'];?></p>
                             <?php if(!isset($_SESSION['email'])){  ?>
                                 <p><a href="login.php" role="button" class="btn btn-primary btn-block">Buy Now</a></p>
-                                <?php
-                                }
-                                else{
-                                    if(check_if_added_to_cart(1)){
-                                        echo '<a href="#" class=btn btn-block btn-success disabled>Added to cart</a>';
-                                    }else{
-                                        ?>
-                                        <a href="cart_add.php?id=1" class="btn btn-block btn-primary" name="add" value="add" class="btn btn-block btr-primary">Add to cart</a>
-                                        <?php
-                                    }
-                                }
-                                ?>
-                            
+                            <?php } else { ?>
+                                <?php if(in_array($produts[$list-4]['id'], $user_added_cart)){ ?>
+                                    <a href="#" class="btn btn-block btn-primary disabled">In cart</a>
+                                <?php } else { ?>
+                                    <a href="cart_add.php?id=<?=$produts[$list-4]['id']?>" class="btn btn-block btn-primary" name="add" value="add" class="btn btn-block btr-primary">Add to cart</a>
+                                <?php } ?>
+                            <?php } ?>
                         </div>
                     </center>
                 </div>
             </div>
+            <?php } if (isset($produts[$list-3])) { ?>
             <div class="col-md-3 col-sm-6">
                 <div class="thumbnail">
                     <a href="cart.php">
@@ -47,26 +66,22 @@
                     </a>
                     <center>
                         <div class="caption">
-                            <h3>Sony DSLR</h3>
-                            <p>Price: Rs. 40000.00</p>
+                            <h3 class="capitalize"><?=$produts[$list-3]['name'];?></h3>
+                            <p>Price: Rs. <?=$produts[$list-3]['price'];?></p>
                             <?php if(!isset($_SESSION['email'])){  ?>
                                 <p><a href="login.php" role="button" class="btn btn-primary btn-block">Buy Now</a></p>
-                                <?php
-                                }
-                                else{
-                                    if(check_if_added_to_cart(2)){
-                                        echo '<a href="#" class=btn btn-block btn-success disabled>Added to cart</a>';
-                                    }else{
-                                        ?>
-                                        <a href="cart_add.php?id=2" class="btn btn-block btn-primary" name="add" value="add" class="btn btn-block btr-primary">Add to cart</a>
-                                        <?php
-                                    }
-                                }
-                                ?>
+                            <?php } else { ?>
+                                <?php if(in_array($produts[$list-3]['id'], $user_added_cart)){ ?>
+                                    <a href="#" class="btn btn-block btn-primary disabled">In cart</a>
+                                <?php } else { ?>
+                                    <a href="cart_add.php?id=<?=$produts[$list-3]['id']?>" class="btn btn-block btn-primary" name="add" value="add" class="btn btn-block btr-primary">Add to cart</a>
+                                <?php } ?>
+                            <?php } ?>
                         </div>
                     </center>
                 </div>
             </div>
+            <?php } if (isset($produts[$list-2])) { ?>
             <div class="col-md-3 col-sm-6">
                 <div class="thumbnail">
                     <a href="cart.php">
@@ -74,26 +89,22 @@
                     </a>
                     <center>
                         <div class="caption">
-                            <h3>Sony DSLR</h3>
-                            <p>Price: Rs. 50000.00</p>
+                            <h3 class="capitalize"><?=$produts[$list-2]['name'];?></h3>
+                            <p>Price: Rs. <?=$produts[$list-2]['price'];?></p>
                             <?php if(!isset($_SESSION['email'])){  ?>
                                 <p><a href="login.php" role="button" class="btn btn-primary btn-block">Buy Now</a></p>
-                                <?php
-                                }
-                                else{
-                                    if(check_if_added_to_cart(3)){
-                                        echo '<a href="#" class=btn btn-block btn-success disabled>Added to cart</a>';
-                                    }else{
-                                        ?>
-                                        <a href="cart_add.php?id=3" class="btn btn-block btn-primary" name="add" value="add" class="btn btn-block btr-primary">Add to cart</a>
-                                        <?php
-                                    }
-                                }
-                                ?>
+                            <?php } else { ?>
+                                <?php if(in_array($produts[$list-2]['id'], $user_added_cart)){ ?>
+                                    <a href="#" class="btn btn-block btn-primary disabled">In cart</a>
+                                <?php } else { ?>
+                                    <a href="cart_add.php?id=<?=$produts[$list-2]['id']?>" class="btn btn-block btn-primary" name="add" value="add" class="btn btn-block btr-primary">Add to cart</a>
+                                <?php } ?>
+                            <?php } ?>
                         </div>
                     </center>
                 </div>
             </div>
+            <?php } if (isset($produts[$list-1])) { ?>
             <div class="col-md-3 col-sm-6">
                 <div class="thumbnail">
                     <a href="cart.php">
@@ -101,249 +112,25 @@
                     </a>
                     <center>
                         <div class="caption">
-                            <h3>Olympus DSLR</h3>
-                            <p>Price: Rs. 80000.00</p>
+                            <h3 class="capitalize"><?=$produts[$list-1]['name'];?></h3>
+                            <p>Price: Rs. <?=$produts[$list-1]['price'];?></p>
                             <?php if(!isset($_SESSION['email'])){  ?>
                                 <p><a href="login.php" role="button" class="btn btn-primary btn-block">Buy Now</a></p>
-                                <?php
-                                }
-                                else{
-                                    if(check_if_added_to_cart(4)){
-                                        echo '<a href="#" class=btn btn-block btn-success disabled>Added to cart</a>';
-                                    }else{
-                                        ?>
-                                        <a href="cart_add.php?id=4" class="btn btn-block btn-primary " name="add" value="add" class="btn btn-block btr-primary">Add to cart</a>
-                                        <?php
-                                    }
-                                }
-                                ?>
+                            <?php } else { ?>
+                                <?php if(in_array($produts[$list-1]['id'], $user_added_cart)){ ?>
+                                    <a href="#" class="btn btn-block btn-primary disabled">In cart</a>
+                                <?php } else { ?>
+                                    <a href="cart_add.php?id=<?=$produts[$list-1]['id'];?>" class="btn btn-block btn-primary" name="add" value="add" class="btn btn-block btr-primary">Add to cart</a>
+                                <?php } ?>
+                            <?php } ?>
                         </div>
                     </center>
                 </div>
             </div>
+            <?php } ?>
         </div>
-        
-        <div class="row py-3">
-            <div class="col-md-3 col-sm-6">
-                <div class="thumbnail">
-                    <a href="cart.php">
-                        <img src="img/titan301.jpg" alt="Titan 301">
-                    </a>
-                    <center>
-                        <div class="caption">
-                            <h3>Titan Model #301</h3>
-                            <p>Price: Rs. 13000.00</p>
-                            <?php if(!isset($_SESSION['email'])){  ?>
-                                <p><a href="login.php" role="button" class="btn btn-primary btn-block">Buy Now</a></p>
-                                <?php
-                                }
-                                else{
-                                    if(check_if_added_to_cart(5)){
-                                        echo '<a href="#" class=btn btn-block btn-success disabled>Added to cart</a>';
-                                    }else{
-                                        ?>
-                                        <a href="cart_add.php?id=5" class="btn btn-block btn-primary " name="add" value="add" class="btn btn-block btr-primary">Add to cart</a>
-                                        <?php
-                                    }
-                                }
-                                ?>
-                        </div>
-                    </center>
-                </div>
-            </div>
-            <div class="col-md-3 col-sm-6">
-                <div class="thumbnail">
-                    <a href="cart.php">
-                        <img src="img/titan201.jpg" alt="Titan 201">
-                    </a>
-                    <center>
-                        <div class="caption">
-                            <h3>Titan Model #201</h3>
-                            <p>Price: Rs. 3000.00</p>
-                            <?php if(!isset($_SESSION['email'])){  ?>
-                                <p><a href="login.php" role="button" class="btn btn-primary btn-block">Buy Now</a></p>
-                                <?php
-                                }
-                                else{
-                                    if(check_if_added_to_cart(6)){
-                                        echo '<a href="#" class=btn btn-block btn-success disabled>Added to cart</a>';
-                                    }else{
-                                        ?>
-                                        <a href="cart_add.php?id=6" class="btn btn-block btn-primary " name="add" value="add" class="btn btn-block btr-primary">Add to cart</a>
-                                        <?php
-                                    }
-                                }
-                                ?>
-                        </div>
-                    </center>
-                </div>
-            </div>
-            <div class="col-md-3 col-sm-6">
-                <div class="thumbnail">
-                    <a href="cart.php">
-                        <img src="img/hmt.JPG" alt="htm milan">
-                    </a>
-                    <center>
-                        <div class="caption">
-                            <h3>HMT Milan</h3>
-                            <p>Price: Rs. 8000.00</p>
-                            <?php if(!isset($_SESSION['email'])){  ?>
-                                <p><a href="login.php" role="button" class="btn btn-primary btn-block">Buy Now</a></p>
-                                <?php
-                                }
-                                else{
-                                    if(check_if_added_to_cart(7)){
-                                        echo '<a href="#" class=btn btn-block btn-success disabled>Added to cart</a>';
-                                    }else{
-                                        ?>
-                                        <a href="cart_add.php?id=7" class="btn btn-block btn-primary " name="add" value="add" class="btn btn-block btr-primary">Add to cart</a>
-                                        <?php
-                                    }
-                                }
-                                ?>
-                        </div>
-                    </center>
-                </div>
-            </div>
-            <div class="col-md-3 col-sm-6">
-                <div class="thumbnail">
-                    <a href="cart.php">
-                        <img src="img/favreleuba.jpg" alt="Favre Leuba">
-                    </a>
-                    <center>
-                        <div class="caption">
-                            <h3>Favre Leuba #111</h3>
-                            <p>Price: Rs. 18000.00</p>
-                            <?php if(!isset($_SESSION['email'])){  ?>
-                                <p><a href="login.php" role="button" class="btn btn-primary btn-block">Buy Now</a></p>
-                                <?php
-                                }
-                                else{
-                                    if(check_if_added_to_cart(8)){
-                                        echo '<a href="#" class=btn btn-block btn-success disabled>Added to cart</a>';
-                                    }else{
-                                        ?>
-                                        <a href="cart_add.php?id=8" class="btn btn-block btn-primary " name="add" value="add" class="btn btn-block btr-primary">Add to cart</a>
-                                        <?php
-                                    }
-                                }
-                                ?>
-                        </div>
-                    </center>
-                </div>
-            </div>
-        </div>
-        
-        <div class="row py-3">
-            <div class="col-md-3 col-sm-6">
-                <div class="thumbnail">
-                    <a href="cart.php">
-                        <img src="img/raymond.jpg" alt="Raymond shirt">
-                    </a>
-                    <center>
-                        <div class="caption">
-                            <h3>Raymond</h3>
-                            <p>Price: Rs. 1500.00</p>
-                            <?php if(!isset($_SESSION['email'])){  ?>
-                                <p><a href="login.php" role="button" class="btn btn-primary btn-block">Buy Now</a></p>
-                                <?php
-                                }
-                                else{
-                                    if(check_if_added_to_cart(9)){
-                                        echo '<a href="#" class=btn btn-block btn-success disabled>Added to cart</a>';
-                                    }else{
-                                        ?>
-                                        <a href="cart_add.php?id=9" class="btn btn-block btn-primary " name="add" value="add" class="btn btn-block btr-primary">Add to cart</a>
-                                        <?php
-                                    }
-                                }
-                                ?>
-                        </div>
-                    </center>
-                </div>
-            </div>
-            <div class="col-md-3 col-sm-6">
-                <div class="thumbnail">
-                    <a href="cart.php">
-                        <img src="img/charles.jpg" alt="Charles shirt">
-                    </a>
-                    <center>
-                        <div class="caption">
-                            <h3>Charles</h3>
-                            <p>Price: Rs. 1000.00</p>
-                            <?php if(!isset($_SESSION['email'])){  ?>
-                                <p><a href="login.php" role="button" class="btn btn-primary btn-block">Buy Now</a></p>
-                                <?php
-                                }
-                                else{
-                                    if(check_if_added_to_cart(10)){
-                                        echo '<a href="#" class=btn btn-block btn-success disabled>Added to cart</a>';
-                                    }else{
-                                        ?>
-                                        <a href="cart_add.php?id=10" class="btn btn-block btn-primary " name="add" value="add" class="btn btn-block btr-primary">Add to cart</a>
-                                        <?php
-                                    }
-                                }
-                                ?>
-                        </div>
-                    </center>
-                </div>
-            </div>
-            <div class="col-md-3 col-sm-6">
-                <div class="thumbnail">
-                    <a href="cart.php">
-                        <img src="img/HXR.jpg" alt="HXR">
-                    </a>
-                    <center>
-                        <div class="caption">
-                            <h3>HXR</h3>
-                            <p>Price: Rs. 900.00</p>
-                            <?php if(!isset($_SESSION['email'])){  ?>
-                                <p><a href="login.php" role="button" class="btn btn-primary btn-block">Buy Now</a></p>
-                                <?php
-                                }
-                                else{
-                                    if(check_if_added_to_cart(11)){
-                                        echo '<a href="#" class=btn btn-block btn-success disabled>Added to cart</a>';
-                                    }else{
-                                        ?>
-                                        <a href="cart_add.php?id=11" class="btn btn-block btn-primary " name="add" value="add" class="btn btn-block btr-primary">Add to cart</a>
-                                        <?php
-                                    }
-                                }
-                                ?>
-                        </div>
-                    </center>
-                </div>
-            </div>
-            <div class="col-md-3 col-sm-6">
-                <div class="thumbnail">
-                    <a href="cart.php">
-                        <img src="img/pink.jpg" alt="PINK">
-                    </a>
-                    <center>
-                        <div class="caption">
-                            <h3>PINK</h3>
-                            <p>Price: Rs. 1200.00</p>
-                            <?php if(!isset($_SESSION['email'])){  ?>
-                                <p><a href="login.php" role="button" class="btn btn-primary btn-block">Buy Now</a></p>
-                                <?php
-                                }
-                                else{
-                                    if(check_if_added_to_cart(12)){
-                                        echo '<a href="#" class=btn btn-block btn-success disabled>Added to cart</a>';
-                                    }else{
-                                        ?>
-                                        <a href="cart_add.php?id=12" class="btn btn-block btn-primary " name="add" value="add" class="btn btn-block btr-primary">Add to cart</a>
-                                        <?php
-                                    }
-                                }
-                                ?>
-                        </div>
-                    </center>
-                </div>
-            </div>
-        </div>
+        <?php } ?>
+        <?php } ?>
     </div>
 </div>
 <div class="content-gap"></div>
