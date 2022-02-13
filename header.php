@@ -91,7 +91,7 @@ session_start();
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link text-truncate">
+                    <a href="sell-product.php" class="nav-link text-truncate">
                         <i class="fs-5 bi-house"></i><span class="ms-1 d-sm-inline">Sell My Products</span>
                     </a>
                 </li>

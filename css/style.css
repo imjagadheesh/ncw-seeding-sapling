@@ -131,11 +131,17 @@ html {
 
 .cart-page {margin-top: 20px;}
 
+/* Password page CSS */
 .settings-page {margin-top: 20px;}
 .settings-page .settings-sec{display: flex;align-items: center;justify-content: center;}
 .settings-page .settings-sec .settings-sec-form{width: 50%;}
 .settings-page .settings-sec .settings-sec-form form{display: grid;gap: 8px;}
 
+/* Sell page CSS */
+.sell-page {margin-top: 20px;}
+.sell-page .sell-sec{display: flex;align-items: center;justify-content: center;}
+.sell-page .sell-sec .sell-form-sec{width: 50%;}
+.sell-page .sell-sec .sell-form-sec form{display: grid;gap: 8px;}
 
 @media (min-width:320px){
     #autoResize{
