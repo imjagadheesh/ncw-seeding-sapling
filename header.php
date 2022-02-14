@@ -3,6 +3,7 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 session_start();
+require 'connection.php';
 
 ?>
 <!DOCTYPE html>
@@ -67,6 +68,14 @@ session_start();
             <span class="alert-content"><?= $msg; ?></span>
         </div>
     <?php } ?>
+    
+    <?php
+        if (isset($_SESSION['id'])) {
+            $user_id = $_SESSION['id'];
+            $user_query = "select count(id) as count from items where added_user_id = $user_id";
+            $user_result = mysqli_query($con, $user_query) or die(mysqli_error($con));
+            $user_result = mysqli_fetch_array($user_result, MYSQLI_ASSOC);
+    ?>
 
     <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvas" data-bs-keyboard="false" data-bs-backdrop="false">
         <div class="offcanvas-header">
@@ -95,11 +104,13 @@ session_start();
                         <i class="fs-5 bi-house"></i><span class="ms-1 d-sm-inline">Sell My Products</span>
                     </a>
                 </li>
+                <?php if ($user_result['count'] > 0) { ?>
                 <li class="nav-item">
-                    <a href="#" class="nav-link text-truncate">
+                    <a href="my-product.php" class="nav-link text-truncate">
                         <i class="fs-5 bi-house"></i><span class="ms-1 d-sm-inline">My Products</span>
                     </a>
                 </li>
+                <?php } ?>
                 <li class="nav-item">
                     <a href="logout.php" class="nav-link text-truncate">
                         <i class="fs-5 bi-house"></i><span class="ms-1 d-sm-inline">Logout</span>
@@ -108,3 +119,4 @@ session_start();
             </ul>
         </div>
     </div>
+    <?php } ?>
