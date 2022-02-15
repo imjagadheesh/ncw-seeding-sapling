@@ -127,7 +127,7 @@ html {
 /* Shopping page CSS */
 .shoping-page{margin-top: 20px;}
 .shoping-page .shop-sec{height:1105px;overflow-y: scroll;}
-.shoping-page .shop-sec .row .thumbnail img{width: 250px;height: 175px;}
+.shoping-page .shop-sec .row .thumbnail img{width: 100% !important;height: 180px;}
 
 .cart-page {margin-top: 20px;}
 

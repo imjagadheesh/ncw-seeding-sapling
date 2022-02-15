@@ -1,6 +1,6 @@
 <?php
-    if(isset($_SESSION['email'])){
-        header('location: products.php');
+    if(!isset($_SESSION['email'])){
+        header('location: login.php');
     }
     require 'header.php';
     require 'connection.php';

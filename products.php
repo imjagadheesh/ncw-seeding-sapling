@@ -2,16 +2,23 @@
     require 'header.php';
     require 'connection.php';
 
-    $user_id = $_SESSION['id'];
-    $user_items_query = "SELECT item_id FROM users_items WHERE user_id = '$user_id' AND status = 1";
-    $user_item_result = mysqli_query($con, $user_items_query) or die(mysqli_error($con));
-    $user_item_result = mysqli_fetch_all($user_item_result, MYSQLI_ASSOC);
     $user_added_cart = [];
-    foreach ($user_item_result as $item) {
-        $user_added_cart[] = $item['item_id'];
-    }
 
-    $produts_query = "SELECT * FROM `items` WHERE added_user_id != '$user_id' OR added_user_id IS NULL";
+    if (isset($_SESSION['id'])) {
+        $user_id = $_SESSION['id'];
+        $user_items_query = "SELECT item_id FROM users_items WHERE user_id = '$user_id' AND status = 1";
+        $user_item_result = mysqli_query($con, $user_items_query) or die(mysqli_error($con));
+        $user_item_result = mysqli_fetch_all($user_item_result, MYSQLI_ASSOC);
+        
+        foreach ($user_item_result as $item) {
+            $user_added_cart[] = $item['item_id'];
+        }
+        
+        $produts_query = "SELECT * FROM `items` WHERE added_user_id != '$user_id' OR added_user_id IS NULL";
+    } else {
+        $produts_query = "SELECT * FROM `items` WHERE added_user_id IS NULL";
+    }
+    
     $produts_prepare = mysqli_query($con, $produts_query) or die(mysqli_error($con));
     $produts = mysqli_fetch_all($produts_prepare, MYSQLI_ASSOC);
     $product_cal = ceil(count($produts)/4);
@@ -28,7 +35,7 @@
         <?php if (empty($produts)) { ?>
             <div class="alert alert-info text-center mt-3">
                 <strong>Info!</strong> No products! <br>   
-                <a href="products.php"><span class="fa fa-shopping-bag"></span> Shop now</a>
+                <a href="sell-product.php"><span class="fa fa-shopping-bag"></span> Sell my product</a>
             </div>
         <?php } else { ?>
 
@@ -39,7 +46,7 @@
             <div class="col-md-3 col-sm-6">
                 <div class="thumbnail">
                     <?php $imageArray = json_decode($produts[$list-4]['image'], true);?>
-                    <div id="carousel<?=$list-4;?>" class="carousel slide" data-bs-ride="carousel">
+                    <div id="carousel<?=$list-4;?>" class="carousel slide" data-bs-ride="carousel" data-bs-interval="false">
                         <div class="carousel-indicators">
                             <?php foreach ($imageArray as $indi_key => $indicator) { ?>
                                 <button type="button" data-bs-target="#carousel<?=$list-4;?>" data-bs-slide-to="<?=$indi_key;?>" <?=($indi_key == 0) ? 'class="active"' : '';?> aria-current="true" aria-label="Slide <?=$indi_key;?>"></button>
@@ -82,7 +89,7 @@
             <div class="col-md-3 col-sm-6">
                 <div class="thumbnail">
                     <?php $imageArray = json_decode($produts[$list-3]['image'], true);?>
-                    <div id="carousel<?=$list-3;?>" class="carousel slide" data-bs-ride="carousel">
+                    <div id="carousel<?=$list-3;?>" class="carousel slide" data-bs-ride="carousel" data-bs-interval="false">
                         <div class="carousel-indicators">
                             <?php foreach ($imageArray as $indi_key => $indicator) { ?>
                                 <button type="button" data-bs-target="#carousel<?=$list-3;?>" data-bs-slide-to="<?=$indi_key;?>" <?=($indi_key == 0) ? 'class="active"' : '';?> aria-current="true" aria-label="Slide <?=$indi_key;?>"></button>
@@ -125,7 +132,7 @@
             <div class="col-md-3 col-sm-6">
                 <div class="thumbnail">
                     <?php $imageArray = json_decode($produts[$list-2]['image'], true);?>
-                    <div id="carousel<?=$list-2;?>" class="carousel slide" data-bs-ride="carousel">
+                    <div id="carousel<?=$list-2;?>" class="carousel slide" data-bs-ride="carousel" data-bs-interval="false">
                         <div class="carousel-indicators">
                             <?php foreach ($imageArray as $indi_key => $indicator) { ?>
                                 <button type="button" data-bs-target="#carousel<?=$list-2;?>" data-bs-slide-to="<?=$indi_key;?>" <?=($indi_key == 0) ? 'class="active"' : '';?> aria-current="true" aria-label="Slide <?=$indi_key;?>"></button>
@@ -168,7 +175,7 @@
             <div class="col-md-3 col-sm-6">
                 <div class="thumbnail">
                     <?php $imageArray = json_decode($produts[$list-1]['image'], true);?>
-                    <div id="carousel<?=$list-1;?>" class="carousel slide" data-bs-ride="carousel">
+                    <div id="carousel<?=$list-1;?>" class="carousel slide" data-bs-ride="carousel" data-bs-interval="false">
                         <div class="carousel-indicators">
                             <?php foreach ($imageArray as $indi_key => $indicator) { ?>
                                 <button type="button" data-bs-target="#carousel<?=$list-1;?>" data-bs-slide-to="<?=$indi_key;?>" <?=($indi_key == 0) ? 'class="active"' : '';?> aria-current="true" aria-label="Slide <?=$indi_key;?>"></button>

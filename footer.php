@@ -5,7 +5,7 @@
             <?php if (isset($_SESSION['email'])) { ?>
                 <div class="sign-up-sec">
                     <a href="cart.php"><span class="fa fa-shopping-cart"></span> Cart</a>
-                    <a href="settings.php"><span class="fa fa-shopping-bag"></span> Shop</a>
+                    <a href="products.php"><span class="fa fa-shopping-bag"></span> Shop</a>
                 </div>
                 <div class="shop-now">
                     <a href="logout.php" class="btn btn-danger">Logout</a>
