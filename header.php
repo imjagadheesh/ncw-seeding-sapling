@@ -110,6 +110,11 @@ require 'connection.php';
                         <i class="fs-5 bi-house"></i><span class="ms-1 d-sm-inline">My Products</span>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="my-product-orders.php" class="nav-link text-truncate">
+                        <i class="fs-5 bi-house"></i><span class="ms-1 d-sm-inline">List of orders</span>
+                    </a>
+                </li>
                 <?php } ?>
                 <li class="nav-item">
                     <a href="logout.php" class="nav-link text-truncate">

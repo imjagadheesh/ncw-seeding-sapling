@@ -1,6 +1,9 @@
 <?php
-    require 'connection.php';
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
     session_start();
+    require 'connection.php';
     $email=mysqli_real_escape_string($con,$_POST['email']);
     $regex_email="/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[_a-z0-9-]+)*(\.[a-z]{2,3})$/";
     if(!preg_match($regex_email,$email)){
@@ -17,6 +20,7 @@
     $rows_fetched=mysqli_num_rows($user_authentication_result);
     if($rows_fetched==0){
         $_SESSION['alert'] = ['msg' => 'Invalid username or password', 'alert-type' => 'alert-danger'];
+        header('location: login.php');
     }else{
         $row=mysqli_fetch_array($user_authentication_result);
         $_SESSION['email']=$email;

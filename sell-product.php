@@ -1,10 +1,10 @@
 <?php
+    require 'header.php';
+    require 'connection.php';
+
     if(!isset($_SESSION['email'])){
         header('location: login.php');
     }
-    require 'header.php';
-    require 'connection.php';
-    
 ?>
 
 <div class="container sell-page">

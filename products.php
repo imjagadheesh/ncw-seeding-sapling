@@ -16,7 +16,7 @@
         
         $produts_query = "SELECT * FROM `items` WHERE added_user_id != '$user_id' OR added_user_id IS NULL";
     } else {
-        $produts_query = "SELECT * FROM `items` WHERE added_user_id IS NULL";
+        $produts_query = "SELECT * FROM `items`";
     }
     
     $produts_prepare = mysqli_query($con, $produts_query) or die(mysqli_error($con));
@@ -71,7 +71,8 @@
                     <center>
                         <div class="caption">
                             <h3 class="capitalize"><?=$produts[$list-4]['name'];?></h3>
-                            <p>Price: Rs. <?=$produts[$list-4]['price'];?></p>
+                            <p class="prod-desc"><?=$produts[$list-4]['description'];?></p>
+                            <p><b>Price: Rs. <?=$produts[$list-4]['price'];?></b></p>
                             <?php if(!isset($_SESSION['email'])){  ?>
                                 <p><a href="login.php" role="button" class="btn btn-primary btn-block">Buy Now</a></p>
                             <?php } else { ?>
@@ -114,7 +115,8 @@
                     <center>
                         <div class="caption">
                             <h3 class="capitalize"><?=$produts[$list-3]['name'];?></h3>
-                            <p>Price: Rs. <?=$produts[$list-3]['price'];?></p>
+                            <p class="prod-desc"><?=$produts[$list-3]['description'];?></p>
+                            <p><b>Price: Rs. <?=$produts[$list-3]['price'];?></b></p>
                             <?php if(!isset($_SESSION['email'])){  ?>
                                 <p><a href="login.php" role="button" class="btn btn-primary btn-block">Buy Now</a></p>
                             <?php } else { ?>
@@ -157,7 +159,8 @@
                     <center>
                         <div class="caption">
                             <h3 class="capitalize"><?=$produts[$list-2]['name'];?></h3>
-                            <p>Price: Rs. <?=$produts[$list-2]['price'];?></p>
+                            <p class="prod-desc"><?=$produts[$list-2]['description'];?></p>
+                            <p><b>Price: Rs. <?=$produts[$list-2]['price'];?></b></p>
                             <?php if(!isset($_SESSION['email'])){  ?>
                                 <p><a href="login.php" role="button" class="btn btn-primary btn-block">Buy Now</a></p>
                             <?php } else { ?>
@@ -200,7 +203,8 @@
                     <center>
                         <div class="caption">
                             <h3 class="capitalize"><?=$produts[$list-1]['name'];?></h3>
-                            <p>Price: Rs. <?=$produts[$list-1]['price'];?></p>
+                            <p class="prod-desc"><?=$produts[$list-1]['description'];?></p>
+                            <p><b>Price: Rs. <?=$produts[$list-1]['price'];?></b></p>
                             <?php if(!isset($_SESSION['email'])){  ?>
                                 <p><a href="login.php" role="button" class="btn btn-primary btn-block">Buy Now</a></p>
                             <?php } else { ?>

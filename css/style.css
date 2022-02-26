@@ -128,6 +128,7 @@ html {
 .shoping-page{margin-top: 20px;}
 .shoping-page .shop-sec{height:1105px;overflow-y: scroll;}
 .shoping-page .shop-sec .row .thumbnail img{width: 100% !important;height: 180px;}
+.shoping-page .prod-desc{height: 100px;overflow: scroll;text-align: left;}
 
 .cart-page {margin-top: 20px;}
 

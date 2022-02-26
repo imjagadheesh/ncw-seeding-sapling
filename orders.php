@@ -21,7 +21,7 @@
 
 <?php if($no_of_user_products == 0) { ?>
 <div class="alert alert-info text-center mt-3">
-    <strong>Info!</strong> No oders found! <br>   
+    <strong>Info!</strong> No orders found! <br>   
     <a href="products.php"><span class="fa fa-shopping-bag"></span> Shop now</a>
 </div>
 <?php } else { ?>
